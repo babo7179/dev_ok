@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>	
+</head>
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script type="text/javascript">
+		var str = "http://www.nlotto.co.kr/common.do?method=getLottoNumber&drwNo=";
+		var arr = [];
+
+		for( var i = 0; i< 10; i++ ){
+			
+		}
+
+		function lootoNum(id){
+			$.ajax({
+				url : str+id
+				, dataType : "json"
+				, contentType : "application/json"
+				//, data : JSON.stringify(answer)
+				, type : "POST"
+				, success : function(data){
+					arr.push(data);
+					console.log(arr)
+				}
+			});
+		}
+
+
+
+
+
+
+		
+
+		
+
+	</script>
+</body>
+</html>

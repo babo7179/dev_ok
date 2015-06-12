@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="simpleApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script src="../lib/angular-1.2.js"></script>	
+
+	
+	<div hello name="angularJs">
+		
+	</div>
+	
+	<script>
+			angular.module('simpleApp', [])
+				.directive('hello', [function ($log) {
+					return {
+						name : 0,
+						priority : 0,
+						template : '<div></div>',
+						//templateUrl : 'directive.html',
+						relace : false,
+						transclude : flase,
+						restrict : 'A',
+						scope : false,
+						//require : 'ngModel',
+						controller : function($scope, $element, $attrs, $transclude){
+						},
+						compile : function(tElement, tAttrs){
+							return {
+								pre : function preLink(scope, iElement, iAttrs, controller){
+
+								},
+								post : function postLink(scope, iElement, iAttrs, controller){
+									$log.log("<h1>hello " + iAttrs.name + "<h1>");
+									iElement.html("<h1>hello " + iAttrs.name + "</h1>");
+								}
+							}
+							//또는
+							//return function postLink(scope , iE1ement , iAttrs , contro11e ,transc1udeFn) { }
+						}
+						// 또는
+						// link : {
+							// pre: function preLink(scope , iE1ement , iAttrs , contro11er , transc1udeFn) { },
+							// post: function postLink(scol표， iE1ement , iAttrs , contro11er,transcludeFn){ }
+						// }
+						// 또는
+						// 1ink: function postLink(scope, iElement , iAttrs , controller) {}
+					}
+					
+			}]);
+				
+
+
+	/*
+		name (문자열) =>이름
+		지시자에서 사용하는 scope의 이름이다 기본으로 지시자의 이름이 scope의 이름이 된다
+
+		priority (슷자) =>우선사항
+		지시자가 적용된 DOM에 여러 지시자가 적용될 수가 있다 이때 우선순위를 줄 수 있는데 숫자로 주어야 하
+		며 큰 숫자의 priority가 정의된 지시자가 먼저 호출된다
+		
+		terminal (true/false)
+		값이 trueOI 면 지시자는 마지막에 호출된다 기본값은 false다
+
+		scope (true/false/객체)
+		지시지에서 사용하는 scope 객체에 대한 설정 정보를 준다. 여기에 줄 수 있는 값은 true/false 또는 객체다
+		각 값의 의미는 다음과 같다
+		
+		true
+		해당 지시자 밀요로하는 새로운 scope가 생성된다
+		
+		false
+		해당 지시자가 적용된 DOM은 별도의 scope를 생성하지 않는다 해당 지시자를 감싸고 있는 부모 DOM
+		에서 사용하는 scope를 사용하게 된다 대부분 ng-controller에서 생성한 scope를 사용효κt
+
+		객체
+		객체를 선언하면 새로운 scope를 생성한다 하지만 부모 scope와의 상속은 없다 완전 독립된 scope 객
+		체가 생성된다， 이 객체에서는 지시자 내부에서 사용하지만 부모 scope와의 관계가 있는 속성들을 정의
+		한다 범하기 쉬운 실수로 해당 객체가 지시자와 연결된 모델이라고 생걱하여 컨트롤러에서 하는 것과 비
+		슷하게 모델을 정의하는데 이 객체는 부모 scope와의 관계를 정의히는 설정 정보를 넣는 곳이다 다음은
+		객체 속성에 줄 수 있는 값이다 예를 들어 {name: "@"} 또는 { name "@itle"}과 같은 형태로 줄 수
+		있다 그러면 name은 해당 지시자에서 사용하는 scope에 대한 속성명이다 다음은 속성 값으로 줄 수 있
+		는기호들이다
+
+		"@" 또는 "@속성명" 
+		연결된 DOM의 속성값을 내부 scope의 속성과 연결한다. DOM 속성값은 항상 문자열이므로 scope
+		속성의 값도 문자열이된다 "@"만 사용하게 되면 DOM 속성의 이름과 내부 속성의 이름이 같다고 판
+		단한다.
+
+		책152쪽부터 참고..
+	*/		
+				
+	</script>
+
+	
+</body>
+</html>

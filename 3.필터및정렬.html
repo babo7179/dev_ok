@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-init="customers= [{name : 'John smith', city : 'phoenix'}, {name : 'John Doe', city : 'New York'}, {name : 'Jane Doe', city : 'San Francisco'}]">
+	<script src="lib/angular.min.js"></script>
+
+	Name : 
+	<br>
+	<input type="text" ng-model="name" /> 
+	<br>
+	<ul> 
+		<li ng-repeat="cust in customers | filter : name | orderBy : 'city'">{{cust.name | uppercase }} - {{cust.city | lowercase }}</li>
+	</ul>
+	<!-- 
+	| filter : name ==>상단 name값 들어가는 내용을 필터링한다
+	| orderBy : 'city' ==> 도시명으로 정렬  JSON으로 넘어오면 순서가 아마 안맞는데 idx줘서 oderBy하면 될듯
+
+	자세한 내용은 API에 filter부분을 참조 할것
+-->
+</body>
+</html>

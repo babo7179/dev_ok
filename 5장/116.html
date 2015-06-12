@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<!-- 최초 로딩시 ng명령어를 이용해서 모델을 선언할수있다. -->
+<!-- body ng-init="userId= 'woodam'; bookmark = { name : '구글', url : 'www.google.com', image : 'google.png'} "> -->
+<body>
+	<script src="../lib/angular-1.2.js"></script>
+	
+	<div ng-controller="mainCrtl">
+		<p>{{userId}}, {{bookmark}}</p>
+		<button ng-click="userEmail='woodam@qualson.com'">이메일 추가</button>
+
+
+		<input type="text" ng-model="search"><!--이렇게 모델에다가 바로 데이터 집어 넣어서 바로 출력할수도있다.-->
+		<p>{{search}}</p><!--이렇게 모델에다가 바로 데이터 집어 넣어서 바로 출력할수도있다.-->
+		<ul>
+			<li ng-repeat="bookmark in bookmarList"></li>
+			<p><a href="{{bookmark.url}}">{{bookmark.name}}</a></p>
+		</ul>
+	</div>
+	<script>
+		var model;
+		//모델은 이렇게 컨트롤러에서 선언할수 있다.
+		function mainCrtl($scope){
+			$scope.userId = "woodam";
+			$scope.bookmark = { name : "구글", url : "www.google.com", image : "google.png"};
+			$scope.bookmarkList = [
+			{name : "구글", url : "www.google.com", image : "google.png"}
+			, {name : "네이버", url : "www.naver.com", image : "naver.png"}
+			]
+
+			model = $scope;
+		}
+
+	</script>
+</body>
+</html>

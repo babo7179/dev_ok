@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="simpleApp">
+<head>
+	<meta charset="UTF-8">
+	<title>150생성</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script src="../lib/angular-1.2.js"></script>	
+
+	
+	<div hello name="angularJs">
+		
+	</div>
+	
+	<script>
+			angular.module('simpleApp', [])
+				.directive('hello', [function () {
+					return function (scope, iElement, iAttrs, controller) {
+						iElement.html(" <h1>hello " + iAttrs.name + "</h1>" );
+					};
+					
+			}]);
+
+				
+	</script>
+
+	
+</body>
+</html>

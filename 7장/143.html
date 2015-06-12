@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="simpleApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script src="../lib/angular-1.2.js"></script>
+	
+	
+	<div ng-controller="mainCtrl">
+		<p ng:style="getStyle()">Hello</p>
+		<p class="ng_style: getStyle();">hello</p>
+		<ng-form name="groupForm">
+			<form name="formA"><input type="text"></form>
+			<form name="formB"><input type="text"></form>
+		</ng-form>
+	</div>
+	<!-- 
+	ng-style 지시자를 속성으로 사용하는데 하나는 xml을 네임스페이스방식으로 사용하고 있고 ng-form지사자는 요소 이름으로 사용하고있다.
+	-->
+	<script>
+			angular.module('simpleApp', [])
+				.controller('mainCtrl', function( $scope ){
+					$scope.getStyle = function(){
+						return {"color" : "red"};
+					}
+				})
+
+	//지시자를 사용하게되면 웹표준을 준수하지 않았다는 결과를 얻게되는데 이럴때
+	//x-또는 data-를 사용할 지시자 앞에 붙여서 사용한다 
+	//ex)x-ng-click 또는 data-ng-click
+
+
+
+	//IE7 이나 IE8과 같은 오래된 브라우저에서는 요소명으로 호출하려면 다음 코드와 같이
+	//Ang비a낀S가 템플릿을 컴파일하기 이전에 DOM이 생성돼야 한다. IE8을 지원해야 하는 웹
+	</script>
+
+	<!-- 
+	//애플리케이션이라면 다음과 같이 코드를 작성한다
+		<head>
+			<!--[if lte IE8]>
+			<script>
+				document.createElement("my-directive");
+				//css에서 사용할떄 필요하다
+				document.createElement("my:directive");
+			</script>
+
+			지시자buill-in directive
+-->
+</body>
+</html>

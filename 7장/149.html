@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="simpleApp">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script src="../lib/angular-1.2.js"></script>	
+
+	
+	<div hello name="angularJs">
+		
+	</div>
+	
+	<script>
+			angular.module('simpleApp', [])
+				.directive('hello', [function () {
+					return function (scope, iElement, iAttrs, controller) {
+						iElement.html(" <h1>hello " + iAttrs.name + "</h1>" );
+					};
+					
+			}]);
+				
+	/*
+		사용자 정의 지시자.
+		directive method는 첫번째 인자로 지시자의 이름을 요구한다.
+		지시자의 이름은 낙타표기법으로 작성해야한다 그담으로 지사자 설정함수를 줄수있는데 이함수에서 다른 서비스의 주입을 받고싶을때 서비스 이름으로 인자를 정의하면된다
+		angular.module('simpleApp', [])
+				.directive('hello', [function ($log) {
+					return function (scope, iElement, iAttrs, controller, transcludeFn) {
+						$log.log(" <h1>hello " + iAttrs.name + "</h1>" );
+						iElement.html(" <h1>hello " + iAttrs.name + "</h1>" );
+					};
+					
+			}]);
+
+			$log는 뒤에 의존관계 주입과 서비스 부분에 나옴
+
+
+
+			angular.module('simpleApp', [])
+				.directive('hello', [function () {
+					return function (scope, iElement, iAttrs, controller) {
+						iElement.html(" <h1>hello " + iAttrs.name + "</h1>" );
+					};
+					
+			}]);
+
+
+
+
+• scope 객체
+scope 객체를 이용해 데이터 변경을 감지하거나 외부 컨트롤러와 데이터 바인딩할 때 사용한다
+• 연결된요소객체
+AngularJS는 제이쿼리와 뛰어난 호환성을 제공하지만 제이쿼리 없이도 사용할 수 있게 제이쿼리 라이트
+버전을 제공하고 있다 제이쿼리를 해당 페이지에서 사용하면 연결된 DOM을 감싸고 있는 제이쿼리 객체
+가 반환되고 그렇지 않으면 AngularJS가 구현한 제이쿼 리 라이트 객체가 반환된다 해당 객체에는 htmlO.
+append. css 등 제이쿼리에서 제공히는 DOM을 제어할 수 있는 다양한 메서드가 있다 자세한 내용은
+http//docs.angularjs.org/api/angular.element를 침고하자
+• 속성객체
+연결된 요소에서 속성명과 속성값을 가지는 속성 객체다 예를 들어. (tap title=“ hello" )이ap)이라는 요소
+가 있을 때 해당 요소에 대한 속성 객체로서 씨e의 속성을 이용해 hello라는 값을 가지고 올 수 있다 
+iAttrs.name을 해당 객체에서 제공하는 메서드는 http//docs.angularjs.org/api/ng.$compile
+directive.Attributes에서 참고할 수 있다
+• 컨트롤러객체
+지시지에서는 해당 지시자가 사용하는 여러 요소가 공통으로 공유하는 컨트롤러를 정의할 수 있다 
+해당예제의 Hello 지시자는 컨트롤러를 등록하지 않았다 여기서의 컨트롤러는 ng-controller로 등록하는 컨도
+롤러가 아니라 지시지에서 등록하는 컨트롤러임을 명심하자 지시자의 컨트롤러는 곧 자세히 살펴보겠다
+• transclude 함수
+transclude 옵션을 사용할 경우 포함되는 페이지 영역에 전달할 scope에 대한 링크 함수를 정의한다 삽입
+되는 페이지 영역에 적절한 scope를 미리 연결하기 위해 사용한다
+	*/		
+				
+	</script>
+
+	
+</body>
+</html>

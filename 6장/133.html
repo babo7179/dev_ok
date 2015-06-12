@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app="lotto">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<!-- 최초 로딩시 ng명령어를 이용해서 모델을 선언할수있다. -->
+<!-- body ng-init="userId= 'woodam'; bookmark = { name : '구글', url : 'www.google.com', image : 'google.png'} "> -->
+<body>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.min.js"></script>
+	<script src="../lib/angular-1.2.js"></script>
+	
+	<style>
+		em{display:inline-block; width:80px;}
+		span{display:inline-block; width:80px;}
+	</style>
+
+	
+	<div ng-controller="lottoCtrl">
+		<ul>
+			<li ng-repeat="dt in lottoList">
+				<em>{{dt.idx}}회차</em>
+				<span>1 : {{dt.no1}}번</span><span>2 : {{dt.no2}}번</span><span>3: {{dt.no1}}번</span> <span>4 : {{dt.no4}}번</span> <span>5 : {{dt.no5}}번</span>
+			</li>
+		</ul>
+	</div>
+	<script>
+		
+			var url = "http://exc3399.dothome.co.kr/lotto-api.php";
+			// $.ajax({
+			// 	url : 
+			// 	"http://exc3399.dothome.co.kr/lotto-api.php"
+			// 	, dataType : "json"
+			// 	, type : "POST"
+			// 	, success : function(data){	
+			// 		model = data;					
+			// 		dataAdd();
+			// 	}
+			// });
+
+		
+
+			
+			angular.module('lotto', [])
+				.controller('lottoCtrl', ['$scope', '$http', function( $scope, $http ){
+					$http.get(url).success( function(response) {
+						console.log(response)
+				      	$scope.lottoList = response;
+
+				  	});
+				}])
+			
+		
+	</script>
+</body>
+</html>

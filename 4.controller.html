@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="lib/angular-1.2.js"></script>
+	<div ng-controller="simpleController"><!--버전 1.2에서는 이런식으로 된다 그렇지만 1.3에서는 모듈을 통해 처리해야한다 완전 이거땜에 삽질함 1.2보다 1.3이속도 3~4배빠르다-->
+		Name : 
+		<br>
+		<input type="text" ng-model="name" /> 
+		<br>
+		<ul> 
+			<li ng-repeat="cust in customers | filter : name | orderBy : 'city'">
+				{{cust.name | uppercase }} - {{cust.city | lowercase }}
+			</li>
+		</ul>
+	</div>
+
+	<script>
+		function simpleController($scope){
+			$scope.customers = [
+			 	{ name : 'John smith', city : 'phoenix' }
+			 	, { name : 'John Doe', city : 'New York' }
+			 	, { name : 'Jane Doe', city : 'San Francisco' }
+			 ];
+		}
+	</script>
+</body>
+</html>

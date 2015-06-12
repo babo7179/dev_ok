@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script src="lib/angular.min.js"></script>
+	<div class="container" ng-init="names=['테스트1','테스트2','테스트3','테스트4']">
+		<h3>제목</h3>
+		<ul>
+			<li ng-repeat="text in names">{{text}}</li>
+		</ul>
+
+	</div>
+	
+</body>
+</html>

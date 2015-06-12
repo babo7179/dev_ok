@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<!-- 최초 로딩시 ng명령어를 이용해서 모델을 선언할수있다. -->
+<!-- body ng-init="userId= 'woodam'; bookmark = { name : '구글', url : 'www.google.com', image : 'google.png'} "> -->
+<body>
+	<script src="../lib/angular-1.2.js"></script>
+	
+	<script>
+		function parentCtrl($scope){
+			$scope.parent = {name : "parent Kim"};
+
+			console.log($scope, "부모에서 스코프 검사");
+		}
+
+		function ChildCtrl($scope){
+			$scope.child = {name : "child ko"};
+			$scope.changeParentName = function(){
+				$scope.parent.name = "another Kim";
+
+				console.log($scope)
+			}
+			console.log($scope, "자식에서 스코프 검사");
+			//실제로 테스트 해보니까 부모 자식 관계가 성립된다.
+		}
+
+	</script>
+	
+	
+
+	<div ng-controller="parentCtrl">
+		<h1>부모 이름 : {{parent.name}}</h1>
+		<div ng-controller="ChildCtrl" style="padding:20px">
+			<h2>부모이름 : {{parent.name}}</h2>
+			<h2>자식이름 : {{child.name}}</h2>
+			<button ng-click="changeParentName()">부모이름 변경</button>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" ng-app>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<!-- 최초 로딩시 ng명령어를 이용해서 모델을 선언할수있다. -->
+<!-- body ng-init="userId= 'woodam'; bookmark = { name : '구글', url : 'www.google.com', image : 'google.png'} "> -->
+<body>
+	<script src="../lib/angular-1.2.js"></script>
+	
+	<div ng-controller="demoCtrl">
+		<p>북마크 추가</p>
+		사이트 이름<input type="text" ng-model="bookMark.name"> url<input type="text" ng-model="bookMark.url">
+		<br>
+		<button ng-click="addBookMark()">북마크 추가</button>
+		<br><br>
+
+		<h2>현재 북마크 된 리스튼</h2>
+		<ul>
+			<li ng-repeat="list in bookMarkList">
+				북마크 이름{{list.name}} 북마크URL{{list.url}} 
+			</li>
+		</ul>
+
+
+	</div>
+	<script>
+		
+		function demoCtrl($scope){
+			$scope.bookMarkList = [];
+
+			$scope.addBookMark = function(){				
+				$scope.bookMarkList.push(					
+					{ name: $scope.bookMark.name , url : $scope.bookMark.url }
+				);				
+			}
+
+			//컨트롤러에서 dom조작은 금지라고 책에 나와있음			
+		}
+
+	</script>
+</body>
+</html>
